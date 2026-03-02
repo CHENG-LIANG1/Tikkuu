@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="!isTouchDevice">
     <div 
       class="cursor-dot"
       :style="{ 
@@ -24,6 +24,14 @@ import { ref, onMounted, onUnmounted } from 'vue'
 const mouse = ref({ x: 0, y: 0 })
 const isHovering = ref(false)
 const isVisible = ref(false)
+const isTouchDevice = ref(false)
+
+// Detect touch device
+function detectTouchDevice() {
+  return window.matchMedia('(pointer: coarse)').matches || 
+         'ontouchstart' in window ||
+         navigator.maxTouchPoints > 0
+}
 
 function updateMouse(e: MouseEvent) {
   mouse.value.x = e.clientX
@@ -44,6 +52,10 @@ function handleMouseOut() {
 }
 
 onMounted(() => {
+  // Check if touch device
+  isTouchDevice.value = detectTouchDevice()
+  if (isTouchDevice.value) return
+  
   window.addEventListener('mousemove', updateMouse)
   window.addEventListener('mouseout', handleMouseOut)
   
