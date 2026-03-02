@@ -1,0 +1,30 @@
+{
+  "name": "before-the-snow-melts-svelte",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc -b && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "vue": "^3.5.25"
+  },
+  "devDependencies": {
+    "@iconify-json/carbon": "^1.2.19",
+    "@iconify-json/mdi": "^1.2.3",
+    "@iconify-json/ri": "^1.2.10",
+    "@iconify-json/twemoji": "^1.2.5",
+    "@types/node": "^24.10.1",
+    "@unocss/preset-attributify": "^66.6.3",
+    "@unocss/preset-uno": "^66.6.3",
+    "@unocss/transformer-directives": "^66.6.3",
+    "@vitejs/plugin-vue": "^6.0.2",
+    "@vue/tsconfig": "^0.8.1",
+    "typescript": "~5.9.3",
+    "unocss": "^66.6.2",
+    "vite": "^7.3.1",
+    "vue-tsc": "^3.1.5"
+  }
+}
