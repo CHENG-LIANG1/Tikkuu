@@ -74,14 +74,21 @@
                 </div>
                 
                 <!-- Icon -->
-                <div class="text-3xl hidden sm:block">{{ story.icon }}</div>
+                <div class="hidden sm:flex w-10 h-10 rounded-lg items-center justify-center" :style="{ backgroundColor: story.color + '15', color: story.color }">
+                  <span :class="story.icon"></span>
+                </div>
                 
                 <!-- Expand arrow -->
                 <div 
-                  class="w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300"
-                  :class="expandedId === story.id ? 'rotate-180 bg-white/10' : 'bg-white/5 group-hover:bg-white/10'"
+                  class="w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 border"
+                  :class="expandedId === story.id 
+                    ? 'rotate-180 border-white/20 bg-white/10' 
+                    : 'border-white/10 bg-transparent group-hover:border-white/20 group-hover:bg-white/5'"
                 >
-                  <span class="i-carbon-chevron-down text-white/60"></span>
+                  <span 
+                    class="i-carbon-chevron-down transition-colors"
+                    :class="expandedId === story.id ? 'text-white' : 'text-white/40 group-hover:text-white/60'"
+                  ></span>
                 </div>
               </div>
               
@@ -124,11 +131,11 @@
                 <!-- Close button -->
                 <div class="mt-8 flex justify-end">
                   <button 
-                    class="flex items-center gap-2 px-4 py-2 rounded-full text-sm text-white/40 hover:text-white transition-colors"
+                    class="flex items-center gap-2 px-5 py-2.5 rounded-full text-sm text-white/60 hover:text-white bg-white/[0.05] hover:bg-white/10 border border-white/10 hover:border-white/20 transition-all duration-200"
                     @click.stop="expandedId = null"
                   >
                     <span>收起</span>
-                    <span class="i-carbon-chevron-up"></span>
+                    <span class="i-ph-caret-up"></span>
                   </button>
                 </div>
               </div>
@@ -155,7 +162,7 @@ const stories = [
     title: 'Before the Snow Melts',
     date: '序章',
     location: '计划阶段',
-    icon: '📝',
+    icon: 'i-ph-scroll',
     color: '#8B5CF6',
     badge: '前言',
     content: `从我大手一挥，抢下 Coldplay 的演唱会门票后，我和竹宝就在规划我们的婚假出行计划了。但我们那时除了两张演唱会门票，我们可以说是什么都没有。竹宝连护照都没有，而我的护照没几个月就要过期了。
@@ -169,7 +176,7 @@ const stories = [
     title: '领证日',
     date: '2024.08.24',
     location: '江宁市民中心',
-    icon: '💍',
+    icon: 'i-ph-airplane-tilt',
     color: '#EC4899',
     badge: '里程碑',
     content: `这是我和竹预约领证的日期，距离我们第一次见面已经过去了三个月。同时，那也是林宥嘉 IDOL 演唱会南京场举办的日子。
@@ -183,7 +190,7 @@ const stories = [
     title: '抵达首尔',
     date: '4.23',
     location: '首尔江南',
-    icon: '🇰🇷',
+    icon: 'i-ph-map-pin',
     color: '#8B5CF6',
     content: `这是宝宝第一次出国，一路上，在我的引导下，一切都异常顺利。从仁川到江南的良才站，坐地铁要两个多小时。下地铁后步行10分钟我们就到了东横inn。
 
@@ -194,7 +201,7 @@ const stories = [
     title: '第一场 Coldplay 演唱会',
     date: '4.24',
     location: '首尔高阳体育馆',
-    icon: '🎸',
+    icon: 'i-ph-music-notes',
     color: '#8B5CF6',
     badge: '梦想成真',
     content: `整场演唱会的体验很难用文字描述，这是我第一次看内场站着的演唱会，几乎从头蹦到尾。Sparks, Yellow, Fix you, A Sky Full of Stars, Viva La Vida 这几首歌是我的最爱。
@@ -208,7 +215,7 @@ const stories = [
     title: '护照惊魂',
     date: '4.25',
     location: '首尔瑞草警察局',
-    icon: '😱',
+    icon: 'i-ph-warning-circle',
     color: '#EF4444',
     badge: '惊险',
     content: `演唱会后发现护照不见了，翻遍了酒店和包包都没有。凌晨两点，我把护照翻译成韩文在 lost and found 网站搜索，发现有人几小时前交到瑞草第二警察局。步行800米，护照失而复得。
@@ -220,7 +227,7 @@ const stories = [
     title: '秋叶原巡礼',
     date: '4.27',
     location: '东京',
-    icon: '🇯🇵',
+    icon: 'i-ph-map-pin',
     color: '#06B6D4',
     content: `刚走出酒店，就是一个宫崎骏风格的钟，棕色的，很大很好看。宝宝简直美得和周围不在同一个图层。用语言完全无法形容竹宝的美貌。
 
@@ -231,7 +238,7 @@ const stories = [
     title: '富士山下',
     date: '4.29 - 4.30',
     location: '河口湖',
-    icon: '🗻',
+    icon: 'i-ph-mountains',
     color: '#22D3EE',
     badge: '最出片',
     content: `富士山可以说是世界上知名度最高的山，甚至有自己的 emoji 🗻。我们八点多就到了山中湖，看到了好多大白鹅。我用我无与伦比的拍照技术，同时拍下了竹+樱花+富士山这个经典的画面。
@@ -243,7 +250,7 @@ const stories = [
     title: '小丸子乐园',
     date: '5.1',
     location: '静冈',
-    icon: '🍡',
+    icon: 'i-ph-cookie-fill',
     color: '#EC4899',
     content: `此次日本之行，给我留下印象最深刻的地方就是静冈，节奏慢，有文化气息。小丸子就是竹，竹就是小丸子，了解了小丸子就了解了竹。
 
@@ -254,7 +261,7 @@ const stories = [
     title: '乐高乐园',
     date: '5.3',
     location: '名古屋',
-    icon: '🧱',
+    icon: 'i-ph-squares-four',
     color: '#F472B6',
     content: `我们在乐高乐园定制了一个写有我们名字和领证日期的红色砖块，这个砖块选择挂在门口的板子上，每次进门都能看见。
 
@@ -265,7 +272,7 @@ const stories = [
     title: '大阪 finale',
     date: '5.4 - 5.9',
     location: '大阪',
-    icon: '🌟',
+    icon: 'i-ph-star-fill',
     color: '#FBBF24',
     content: `我们去坐了大阪梅田的地标摩天轮，又大又红的那个，建在楼顶上，非常高，竹到一半高度的时候就不敢往下看了。
 

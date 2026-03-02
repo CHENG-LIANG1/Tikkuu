@@ -70,95 +70,73 @@
               class="px-6 py-4 rounded-2xl text-sm font-bold transition-all duration-300 flex items-center gap-3 border"
               :class="activeCategory === cat.id 
                 ? 'text-white border-transparent' 
-                : 'text-white/40 border-white/5 hover:border-white/10 hover:text-white/60'"
+                : 'text-white/40 border-white/10 hover:border-white/20 hover:text-white/70 bg-white/[0.02]'"
               :style="activeCategory === cat.id ? { 
                 background: `linear-gradient(135deg, ${cat.color} 0%, ${cat.color}dd 100%)`,
-                boxShadow: `0 8px 40px ${cat.color}40`
-              } : { backgroundColor: 'rgba(255,255,255,0.02)' }"
+                boxShadow: `0 8px 40px ${hexToRgba(cat.color, 0.3)}`
+              } : {}"
               @click="activeCategory = cat.id"
             >
-              <span class="text-xl">{{ cat.icon }}</span>
+              <span :class="cat.icon"></span>
               <span class="uppercase tracking-wider">{{ cat.name }}</span>
-              <span 
-                v-if="activeCategory === cat.id"
-                class="ml-2 px-2 py-0.5 rounded-full bg-black/20 text-xs"
-              >
-                {{ getCategoryProgress(cat.id) }}
-              </span>
             </button>
           </div>
         </div>
         
         <!-- Tasks grid -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
           <button
             v-for="task in filteredTasks"
             :key="task.id"
-            class="group relative text-left transition-transform duration-200"
-            :class="lastClicked === task.id ? 'scale-95' : ''"
+            class="group relative text-left bg-transparent border-0 p-0 cursor-pointer"
+            :class="lastClicked === task.id ? 'scale-[0.98]' : 'hover:scale-[1.01]'"
+            :style="{ transition: 'transform 0.15s ease' }"
             @click="toggleTask(task.id)"
           >
             <div 
-              class="relative h-full min-h-[160px] p-5 rounded-2xl transition-all duration-300"
+              class="relative h-full p-4 rounded-xl transition-all duration-200"
               :style="{
-                background: task.completed 
-                  ? `linear-gradient(145deg, ${getCategoryColor(task.category)}20 0%, rgba(15,23,42,0.9) 100%)`
-                  : 'linear-gradient(145deg, rgba(30,27,75,0.5) 0%, rgba(15,23,42,0.7) 100%)',
-                border: `1px solid ${task.completed ? getCategoryColor(task.category) + '60' : 'rgba(255,255,255,0.08)'}`,
-                boxShadow: task.completed ? `0 4px 20px ${getCategoryColor(task.category)}30` : 'none'
+                backgroundColor: task.completed 
+                  ? hexToRgba(getCategoryColor(task.category), 0.08)
+                  : 'rgba(255,255,255,0.02)',
+                border: `1px solid ${task.completed ? hexToRgba(getCategoryColor(task.category), 0.25) : 'rgba(255,255,255,0.06)'}`,
               }"
             >
-              <!-- Top: Number, icon and check -->
-              <div class="flex items-start justify-between mb-3">
-                <div class="flex items-center gap-2">
-                  <span class="text-xs font-mono text-white/30">#{{ String(task.id).padStart(3, '0') }}</span>
-                  <div 
-                    class="w-7 h-7 rounded-lg flex items-center justify-center text-sm"
-                    :style="{ 
-                      backgroundColor: getCategoryColor(task.category) + '20',
-                      color: getCategoryColor(task.category)
-                    }"
-                  >
-                    {{ getCategoryIcon(task.category) }}
-                  </div>
-                </div>
-                
-                <!-- Check status -->
+              <!-- Top row: Icon and check -->
+              <div class="flex items-center justify-between mb-3">
                 <div 
-                  class="w-6 h-6 rounded-full flex items-center justify-center transition-all duration-300"
-                  :style="{
-                    backgroundColor: task.completed ? getCategoryColor(task.category) : 'rgba(255,255,255,0.1)',
-                    border: `2px solid ${task.completed ? getCategoryColor(task.category) : 'rgba(255,255,255,0.2)'}`
+                  class="w-6 h-6 rounded-md flex items-center justify-center text-xs"
+                  :style="{ 
+                    backgroundColor: hexToRgba(getCategoryColor(task.category), 0.15),
+                    color: getCategoryColor(task.category)
                   }"
                 >
-                  <span 
-                    class="i-carbon-checkmark text-xs text-white"
-                    :style="{ opacity: task.completed ? 1 : 0 }"
-                  ></span>
+                  <span :class="getCategoryIcon(task.category)"></span>
                 </div>
+                
+                <!-- Simple dot for completed -->
+                <div 
+                  v-if="task.completed"
+                  class="w-2 h-2 rounded-full"
+                  :style="{ backgroundColor: getCategoryColor(task.category) }"
+                ></div>
               </div>
               
               <!-- Task text -->
               <p 
-                class="text-[14px] leading-relaxed"
-                :style="{ color: task.completed ? 'rgba(255,255,255,0.9)' : 'rgba(255,255,255,0.5)' }"
+                class="text-sm leading-snug transition-colors duration-200 text-left"
+                :class="task.completed ? 'text-white/80' : 'text-white/50 group-hover:text-white/65'"
               >
                 {{ task.text }}
               </p>
-              
-              <!-- Done badge -->
-              <div 
-                v-if="task.completed"
-                class="absolute bottom-3 right-3 px-2 py-1 rounded-md text-[10px] font-bold uppercase tracking-wider"
-                :style="{ 
-                  backgroundColor: getCategoryColor(task.category) + '30',
-                  color: getCategoryColor(task.category)
-                }"
-              >
-                Done
-              </div>
             </div>
           </button>
+        </div>
+        
+        <!-- Empty state -->
+        <div v-if="filteredTasks.length === 0" class="text-center py-20">
+          <div class="text-6xl mb-4 opacity-30">✨</div>
+          <p class="text-white/40">该分类下暂无任务</p>
         </div>
       </div>
     </div>
@@ -167,7 +145,7 @@
 
 <script setup lang="ts">
 import { ref, computed, onMounted, watch } from 'vue'
-import { coupleTasks, categories, getCategoryColor, type Task } from '../data/tasks'
+import { coupleTasks, categories, getCategoryColor, hexToRgba, type Task } from '../data/tasks'
 
 const tasks = ref<Task[]>([...coupleTasks])
 const activeCategory = ref('all')
@@ -202,16 +180,9 @@ const filteredTasks = computed(() => {
 const completedCount = computed(() => tasks.value.filter(t => t.completed).length)
 const progress = computed(() => Math.round((completedCount.value / tasks.value.length) * 100))
 
-function getCategoryProgress(categoryId: string) {
-  if (categoryId === 'all') return `${completedCount.value}/150`
-  const catTasks = tasks.value.filter(t => t.category === categoryId)
-  const completed = catTasks.filter(t => t.completed).length
-  return `${completed}/${catTasks.length}`
-}
-
-function getCategoryIcon(categoryId: string) {
+function getCategoryIcon(categoryId: string): string {
   const cat = categories.find(c => c.id === categoryId)
-  return cat?.icon || '✨'
+  return cat?.icon || 'i-lucide-sparkles'
 }
 
 function toggleTask(id: number) {

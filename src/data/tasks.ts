@@ -13,19 +13,26 @@ export interface Category {
 }
 
 export const categories: Category[] = [
-  { id: 'all', name: '全部', icon: '✨', color: '#8B5CF6' },
-  { id: 'travel', name: '旅行', icon: '✈️', color: '#06B6D4' },
-  { id: 'food', name: '美食', icon: '🍜', color: '#F59E0B' },
-  { id: 'romance', name: '浪漫', icon: '💕', color: '#EC4899' },
-  { id: 'home', name: '居家', icon: '🏠', color: '#10B981' },
-  { id: 'challenge', name: '挑战', icon: '🎯', color: '#8B5CF6' },
-  { id: 'growth', name: '成长', icon: '📚', color: '#22D3EE' },
-  { id: 'other', name: '其他', icon: '🎁', color: '#F472B6' },
+  { id: 'all', name: '全部', icon: 'i-ph-sparkle-fill', color: '#8B5CF6' },
+  { id: 'travel', name: '旅行', icon: 'i-ph-airplane-fill', color: '#06B6D4' },
+  { id: 'food', name: '美食', icon: 'i-ph-bowl-food-fill', color: '#F59E0B' },
+  { id: 'romance', name: '浪漫', icon: 'i-ph-heart-fill', color: '#EC4899' },
+  { id: 'home', name: '居家', icon: 'i-ph-house-fill', color: '#10B981' },
+  { id: 'challenge', name: '挑战', icon: 'i-ph-target-fill', color: '#8B5CF6' },
+  { id: 'growth', name: '成长', icon: 'i-ph-book-open-fill', color: '#22D3EE' },
+  { id: 'other', name: '其他', icon: 'i-ph-star-fill', color: '#F472B6' },
 ]
 
 export function getCategoryColor(categoryId: string): string {
   const cat = categories.find(c => c.id === categoryId)
   return cat?.color || '#C8FF2E'
+}
+
+export function hexToRgba(hex: string, alpha: number): string {
+  const r = parseInt(hex.slice(1, 3), 16)
+  const g = parseInt(hex.slice(3, 5), 16)
+  const b = parseInt(hex.slice(5, 7), 16)
+  return `rgba(${r}, ${g}, ${b}, ${alpha})`
 }
 
 export const coupleTasks: Task[] = [
