@@ -188,7 +188,7 @@ const stories = [
   {
     id: 'korea1',
     title: '抵达首尔',
-    date: '4.23',
+    date: '2025.04.23',
     location: '首尔江南',
     icon: 'i-ph-map-pin',
     color: '#8B5CF6',
@@ -199,7 +199,7 @@ const stories = [
   {
     id: 'coldplay1',
     title: '第一场 Coldplay 演唱会',
-    date: '4.24',
+    date: '2025.04.24',
     location: '首尔高阳体育馆',
     icon: 'i-ph-music-notes',
     color: '#8B5CF6',
@@ -213,7 +213,7 @@ const stories = [
   {
     id: 'passport',
     title: '护照惊魂',
-    date: '4.25',
+    date: '2025.04.25',
     location: '首尔瑞草警察局',
     icon: 'i-ph-warning-circle',
     color: '#EF4444',
@@ -225,7 +225,7 @@ const stories = [
   {
     id: 'tokyo',
     title: '秋叶原巡礼',
-    date: '4.27',
+    date: '2025.04.27',
     location: '东京',
     icon: 'i-ph-map-pin',
     color: '#06B6D4',
@@ -236,7 +236,7 @@ const stories = [
   {
     id: 'fuji',
     title: '富士山下',
-    date: '4.29 - 4.30',
+    date: '2025.04.29 - 04.30',
     location: '河口湖',
     icon: 'i-ph-mountains',
     color: '#22D3EE',
@@ -248,7 +248,7 @@ const stories = [
   {
     id: 'shizuoka',
     title: '小丸子乐园',
-    date: '5.1',
+    date: '2025.05.01',
     location: '静冈',
     icon: 'i-ph-cookie-fill',
     color: '#EC4899',
@@ -259,7 +259,7 @@ const stories = [
   {
     id: 'nagoya',
     title: '乐高乐园',
-    date: '5.3',
+    date: '2025.05.03',
     location: '名古屋',
     icon: 'i-ph-squares-four',
     color: '#F472B6',
@@ -270,7 +270,7 @@ const stories = [
   {
     id: 'osaka',
     title: '大阪 finale',
-    date: '5.4 - 5.9',
+    date: '2025.05.04 - 05.09',
     location: '大阪',
     icon: 'i-ph-star-fill',
     color: '#FBBF24',

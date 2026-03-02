@@ -177,12 +177,12 @@ const scrollProgress = ref(0)
 const currentIndex = ref(0)
 
 const cities = [
-  { name: '首尔', country: '韩国', date: '4.23 - 4.26', desc: 'Coldplay 演唱会之旅，音乐与梦想的碰撞', icon: '🎤', color: '#8B5CF6' },
-  { name: '东京', country: '日本', date: '4.26 - 4.29', desc: '秋叶原巡礼，二次元与现实的交织', icon: '🗼', color: '#06B6D4' },
-  { name: '富士山', country: '日本', date: '4.29 - 4.30', desc: '山中湖与樱花，完美的光影时刻', icon: '🗻', color: '#22D3EE' },
-  { name: '静冈', country: '日本', date: '5.1 - 5.2', desc: '小丸子乐园，寻找童年的足迹', icon: '🍡', color: '#EC4899' },
-  { name: '名古屋', country: '日本', date: '5.2 - 5.4', desc: '乐高乐园，定制专属砖块 240824', icon: '🧱', color: '#F472B6' },
-  { name: '大阪', country: '日本', date: '5.4 - 5.9', desc: 'USJ & 购物之旅的 finale', icon: '🌟', color: '#FBBF24' },
+  { name: '首尔', country: '韩国', date: '2025.04.23 - 04.26', desc: 'Coldplay 演唱会之旅，音乐与梦想的碰撞', icon: '🎤', color: '#8B5CF6' },
+  { name: '东京', country: '日本', date: '2025.04.26 - 04.29', desc: '秋叶原巡礼，二次元与现实的交织', icon: '🗼', color: '#06B6D4' },
+  { name: '富士山', country: '日本', date: '2025.04.29 - 04.30', desc: '山中湖与樱花，完美的光影时刻', icon: '🗻', color: '#22D3EE' },
+  { name: '静冈', country: '日本', date: '2025.05.01 - 05.02', desc: '小丸子乐园，寻找童年的足迹', icon: '🍡', color: '#EC4899' },
+  { name: '名古屋', country: '日本', date: '2025.05.02 - 05.04', desc: '乐高乐园，定制专属砖块 240824', icon: '🧱', color: '#F472B6' },
+  { name: '大阪', country: '日本', date: '2025.05.04 - 05.09', desc: 'USJ & 购物之旅的 finale', icon: '🌟', color: '#FBBF24' },
 ]
 
 function handleScroll() {
